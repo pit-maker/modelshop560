@@ -1,37 +1,19 @@
 import { loadProducts } from "./api.js";
+import { renderProducts } from "./ui.js";
+import { state } from "./state.js";
 
 const app = document.getElementById("app");
 
-function renderProducts(products) {
-  app.innerHTML = "";
-
-  if (!products.length) {
-    app.innerHTML = "<p>Нет данных</p>";
-    return;
-  }
-
-  products.forEach(p => {
-    const card = document.createElement("div");
-    card.className = "card";
-
-    card.innerHTML = `
-      <h3>${p.name || ""}</h3>
-      <p><b>Артикул:</b> ${p.article || ""}</p>
-      <p><b>Производитель:</b> ${p.manufacturer || ""}</p>
-      <p><b>Масштаб:</b> ${p.scale || ""}</p>
-      <p><b>Цена:</b> ${p.price || ""} ${p.currency || ""}</p>
-    `;
-
-    app.appendChild(card);
-  });
-}
-
 async function init() {
-  app.innerHTML = "<p>Загрузка товаров...</p>";
 
-  const products = await loadProducts();
+    app.innerHTML = "<p>Загрузка...</p>";
 
-  renderProducts(products);
+    state.products = await loadProducts();
+
+    state.filteredProducts = [...state.products];
+
+    renderProducts(app, state.filteredProducts);
+
 }
 
 init();
