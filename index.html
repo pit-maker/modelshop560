@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Каталог запчастей</title>
 
@@ -14,28 +14,25 @@
 
   <header class="header">
     <div class="title">🚂 Каталог запчастей</div>
-    
-    <input
-        id="searchInput"
-        type="text"
-        placeholder="Поиск по названию или артикулу">
-     
+
+    <input id="searchInput" type="text" placeholder="Поиск по названию или артикулу">
+
     <div class="filters">
 
-        <select id="categoryFilter">
-            <option value="">Все категории</option>
-        </select>
+      <select id="categoryFilter">
+        <option value="">Все категории</option>
+      </select>
 
-        <select id="scaleFilter">
-            <option value="">Все масштабы</option>
-        </select>
+      <select id="scaleFilter">
+        <option value="">Все масштабы</option>
+      </select>
 
-        <select id="manufacturerFilter">
-            <option value="">Все производители</option>
-        </select>
+      <select id="manufacturerFilter">
+        <option value="">Все производители</option>
+      </select>
 
     </div>
-    
+
   </header>
 
   <main>
@@ -44,5 +41,35 @@
 
   <script type="module" src="js/app.js"></script>
 
+  <div id="productModal" class="modal hidden">
+    <div class="modal-overlay"></div>
+
+    <div class="modal-content">
+      <button class="modal-close" id="modalClose">✕</button>
+
+      <div class="modal-grid">
+        <div class="modal-image">
+          <img id="modalImage" src="no-photo.png" alt="product image">
+        </div>
+
+        <div class="modal-info">
+          <h2 id="modalTitle"></h2>
+
+          <div class="modal-price" id="modalPrice"></div>
+
+          <p class="modal-description" id="modalDescription"></p>
+
+          <ul class="modal-specs" id="modalSpecs"></ul>
+
+          <div class="modal-actions">
+            <button id="addToCartBtn">В корзину</button>
+            <button id="favoriteBtn">★ В избранное</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </body>
+
 </html>
