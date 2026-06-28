@@ -12,6 +12,10 @@ export function renderProducts(container, products) {
         const card = document.createElement("div");
         card.className = "card";
 
+        const stock = product.stock === "В наличии"
+            ? '<span class="stock in">🟢 В наличии</span>'
+            : '<span class="stock out">🔴 Нет в наличии</span>';
+        
         card.innerHTML = `
         <img
             class="product-image"
@@ -35,6 +39,10 @@ export function renderProducts(container, products) {
     
             <div class="scale">
                 Масштаб: ${product.scale}
+            </div>
+
+            <div class="scale">
+                Масштаб: ${stock}
             </div>
 
             <div class="price">
