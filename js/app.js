@@ -1,8 +1,10 @@
 import { loadProducts } from "./api.js";
 import { renderProducts } from "./ui.js";
 import { state } from "./state.js";
+import { filterBySearch } from "./search.js";
 
 const app = document.getElementById("app");
+const searchInput = document.getElementById("searchInput");
 
 async function init() {
 
@@ -15,5 +17,13 @@ async function init() {
     renderProducts(app, state.filteredProducts);
 
 }
+
+searchInput.addEventListener("input", e => {
+
+    filterBySearch(e.target.value);
+
+    renderProducts(app, state.filteredProducts);
+
+});
 
 init();
