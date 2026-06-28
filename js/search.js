@@ -1,16 +1,9 @@
 import { state } from "./state.js";
 
-export function filterBySearch(text) {
+export function setSearch(text) {
 
-    const query = text.toLowerCase().trim();
-
-    state.filteredProducts = state.products.filter(product => {
-
-        return (
-            product.name.toLowerCase().includes(query) ||
-            product.article.toLowerCase().includes(query)
-        );
-
-    });
+    state.filters.search = text
+        .trim()
+        .toLowerCase();
 
 }
