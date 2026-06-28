@@ -13,9 +13,7 @@ async function init() {
 
     state.products = await loadProducts();
 
-    applyFilters();
-
-    renderProducts(app, state.filteredProducts);
+    refreshCatalog();
 
 }
 
@@ -23,10 +21,13 @@ searchInput.addEventListener("input", e => {
 
     setSearch(e.target.value);
 
-    applyFilters();
-
-    renderProducts(app, state.filteredProducts);
+    refreshCatalog();
 
 });
+
+function refreshCatalog() {
+    applyFilters();
+    renderProducts(app, state.filteredProducts);
+}
 
 init();
