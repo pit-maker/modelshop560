@@ -64,11 +64,11 @@ function createProductCard(product) {
         </div>
     `;
 
-    const image = card.querySelector("img");
+    // const image = card.querySelector("img");
 
-    image.addEventListener("error", () => {
-        image.src = "img/no-photo.png";
-    });
+    // image.addEventListener("error", () => {
+    //     image.src = "img/no-photo.png";
+    // });
 
     return card;
 
