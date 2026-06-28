@@ -33,7 +33,7 @@ function createProductCard(product) {
     card.innerHTML = `
         <img
             class="product-image"
-            src="${product.image || "img/no-photo.png"}"
+            src="${product.image}"
             alt="${product.name}"
         >
 
