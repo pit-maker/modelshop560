@@ -14,10 +14,28 @@
 
   <header class="header">
     <div class="title">🚂 Каталог запчастей</div>
+    
     <input
         id="searchInput"
         type="text"
         placeholder="Поиск по названию или артикулу">
+     
+    <div class="filters">
+
+        <select id="categoryFilter">
+            <option value="">Все категории</option>
+        </select>
+
+        <select id="scaleFilter">
+            <option value="">Все масштабы</option>
+        </select>
+
+        <select id="manufacturerFilter">
+            <option value="">Все производители</option>
+        </select>
+
+    </div>
+    
   </header>
 
   <main>
