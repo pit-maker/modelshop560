@@ -36,6 +36,30 @@ searchInput.addEventListener("input", e => {
 
 });
 
+categoryFilter.addEventListener("change", e => {
+
+    state.filters.category = e.target.value;
+
+    refreshCatalog();
+
+});
+
+scaleFilter.addEventListener("change", e => {
+
+    state.filters.scale = e.target.value;
+
+    refreshCatalog();
+
+});
+
+manufacturerFilter.addEventListener("change", e => {
+
+    state.filters.manufacturer = e.target.value;
+
+    refreshCatalog();
+
+});
+
 function refreshCatalog() {
     applyFilters();
     renderProducts(app, state.filteredProducts);
