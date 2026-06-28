@@ -16,7 +16,7 @@ const manufacturerFilter =
 
 async function init() {
 
-    app.innerHTML = "<p>Загрузка...</p>";
+    app.innerHTML = "<p>Загрузка...1</p>";
 
     state.products = await loadProducts();
 
