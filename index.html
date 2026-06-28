@@ -13,9 +13,18 @@
 <body>
 
   <header class="header">
-    <div class="title">🚂 Каталог запчастей</div>
+    <div class="title" data-i18n-key="headerTitle">Каталог продукции PIT</div>
 
-    <input id="searchInput" type="text" placeholder="Поиск по названию или артикулу">
+    <div class="toolbar">
+      <label for="languageSelect" class="language-label" data-i18n-key="languageLabel">Язык</label>
+      <select id="languageSelect">
+        <option value="ru">RU</option>
+        <option value="en">EN</option>
+        <option value="uk">UK</option>
+      </select>
+    </div>
+
+    <input id="searchInput" type="text" data-i18n-key="searchPlaceholder" data-i18n-attr="placeholder" placeholder="Поиск по названию или артикулу">
 
     <div class="filters">
 
@@ -49,7 +58,8 @@
 
       <div class="modal-grid">
         <div class="modal-image">
-          <img id="modalImage" src="no-photo.png" alt="product image">
+          <img id="modalImage" src="no-photo.png" alt="product image" data-i18n-key="productImageAlt" data-i18n-attr="alt">
+          <div class="modal-thumbs" id="modalThumbnails"></div>
         </div>
 
         <div class="modal-info">
@@ -59,11 +69,12 @@
 
           <p class="modal-description" id="modalDescription"></p>
 
+          <h3 data-i18n-key="modalSpecsTitle">Характеристики</h3>
           <ul class="modal-specs" id="modalSpecs"></ul>
 
           <div class="modal-actions">
-            <button id="addToCartBtn">В корзину</button>
-            <button id="favoriteBtn">★ В избранное</button>
+            <button id="addToCartBtn" data-i18n-key="addToCart">В корзину</button>
+            <button id="favoriteBtn" data-i18n-key="favorite">★ В избранное</button>
           </div>
         </div>
       </div>
