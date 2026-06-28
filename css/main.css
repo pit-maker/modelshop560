@@ -1,0 +1,17 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f6f8;
+  color: #222;
+}
+
+.header {
+  background: #1f2a37;
+  color: white;
+  padding: 16px 20px;
+  font-size: 20px;
+}
+
+#app {
+  padding: 20px;
+}
