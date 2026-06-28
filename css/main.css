@@ -28,3 +28,16 @@ body {
 .card h3 {
   margin: 0 0 8px;
 }
+
+.filters {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+}
+
+.filters select {
+    padding: 8px 12px;
+    font-size: 15px;
+    border-radius: 6px;
+}
