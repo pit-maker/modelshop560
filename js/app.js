@@ -1,7 +1,8 @@
 import { loadProducts } from "./api.js";
 import { renderProducts } from "./ui.js";
 import { state } from "./state.js";
-import { filterBySearch } from "./search.js";
+import { applyFilters } from "./filters.js";
+import { setSearch } from "./search.js";
 
 const app = document.getElementById("app");
 const searchInput = document.getElementById("searchInput");
@@ -12,7 +13,7 @@ async function init() {
 
     state.products = await loadProducts();
 
-    state.filteredProducts = [...state.products];
+    applyFilters();
 
     renderProducts(app, state.filteredProducts);
 
@@ -20,7 +21,9 @@ async function init() {
 
 searchInput.addEventListener("input", e => {
 
-    filterBySearch(e.target.value);
+    setSearch(e.target.value);
+
+    applyFilters();
 
     renderProducts(app, state.filteredProducts);
 
