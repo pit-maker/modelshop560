@@ -1,4 +1,11 @@
 export const state = {
     products: [],
-    filteredProducts: []
+    filteredProducts: [],
+
+    filters: {
+        search: "",
+        manufacturer: "",
+        scale: "",
+        category: ""
+    }
 };
