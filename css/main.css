@@ -111,3 +111,25 @@ body {
     font-size: 15px;
     border-radius: 6px;
 }
+
+.stock{
+
+    display:block;
+
+    margin-top:10px;
+
+    font-size:14px;
+
+}
+
+.in{
+
+    color:green;
+
+}
+
+.out{
+
+    color:#c62828;
+
+}
