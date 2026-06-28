@@ -1,9 +1,11 @@
+import { i18n } from "./i18n.js";
+
 export function renderProducts(container, products) {
 
     container.innerHTML = "";
 
     if (!products || !products.length) {
-        container.innerHTML = "<p>Нет товаров.</p>";
+        container.innerHTML = `<p>${i18n.t("noProducts")}</p>`;
         return;
     }
 
@@ -46,8 +48,8 @@ function createProductCard(product) {
     const isAvailable = product.stock === "В наличии";
 
     const stockText = isAvailable
-        ? "🟢 В наличии"
-        : "🔴 Нет в наличии";
+        ? i18n.t("inStock")
+        : i18n.t("outOfStock");
 
     const stockClass = isAvailable ? "in" : "out";
 
@@ -61,7 +63,7 @@ function createProductCard(product) {
         <h3>${safeText(product.name)}</h3>
 
         <div class="article">
-            Арт. ${safeText(product.article)}
+            ${i18n.t("article")} ${safeText(product.article)}
         </div>
 
         <div class="manufacturer">
@@ -69,7 +71,7 @@ function createProductCard(product) {
         </div>
 
         <div class="scale">
-            Масштаб: ${safeText(product.scale)}
+            ${i18n.t("scaleLabel")} ${safeText(product.scale)}
         </div>
 
         <div class="stock ${stockClass}">
@@ -107,7 +109,37 @@ function openProductModal(product) {
   document.getElementById("modalDescription").textContent = product.description || "";
 
   const img = document.getElementById("modalImage");
-  img.src = product.image || "no-photo.png";
+  const thumbnails = document.getElementById("modalThumbnails");
+
+  const galleryImages = Array.isArray(product.images) && product.images.length
+    ? product.images
+    : [product.image].filter(Boolean);
+
+  const mainImage = galleryImages.length ? galleryImages[0] : "img/no-photo.png";
+  img.src = mainImage;
+  img.alt = safeText(product.name);
+
+  thumbnails.innerHTML = "";
+
+  galleryImages.forEach((src, index) => {
+    const thumb = document.createElement("img");
+    thumb.className = "modal-thumb";
+    thumb.src = src || "img/no-photo.png";
+    thumb.alt = `${safeText(product.name)} ${index + 1}`;
+    thumb.loading = "lazy";
+
+    if (index === 0) {
+      thumb.classList.add("active");
+    }
+
+    thumb.addEventListener("click", () => {
+      img.src = src || "img/no-photo.png";
+      thumbnails.querySelectorAll(".modal-thumb").forEach(node => node.classList.remove("active"));
+      thumb.classList.add("active");
+    });
+
+    thumbnails.appendChild(thumb);
+  });
 
   const specs = document.getElementById("modalSpecs");
   specs.innerHTML = "";

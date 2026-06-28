@@ -1,4 +1,4 @@
-export function fillSelect(select, products, field, placeholder) {
+export function fillSelect(select, products, field, placeholder, selectedValue = "") {
 
     const values = [...new Set(
         products
@@ -16,9 +16,16 @@ export function fillSelect(select, products, field, placeholder) {
 
         option.value = value;
         option.textContent = value;
+        if (value === selectedValue) {
+            option.selected = true;
+        }
 
         select.appendChild(option);
 
     });
+
+    if (!selectedValue) {
+        select.value = "";
+    }
 
 }

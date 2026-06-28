@@ -4,28 +4,31 @@ import { state } from "./state.js";
 import { applyFilters } from "./filters.js";
 import { setSearch } from "./search.js";
 import { fillSelect } from "./filterUI.js";
+import { i18n, translatePage } from "./i18n.js";
 
 const app = document.getElementById("app");
 const searchInput = document.getElementById("searchInput");
-const categoryFilter =
-    document.getElementById("categoryFilter");
-const scaleFilter =
-    document.getElementById("scaleFilter");
-const manufacturerFilter =
-    document.getElementById("manufacturerFilter");
+const categoryFilter = document.getElementById("categoryFilter");
+const scaleFilter = document.getElementById("scaleFilter");
+const manufacturerFilter = document.getElementById("manufacturerFilter");
+const languageSelect = document.getElementById("languageSelect");
 
 async function init() {
 
-    app.innerHTML = "<p>Загрузка...1</p>";
+    translatePage();
+    app.innerHTML = `<p>${i18n.t("loading")}</p>`;
 
     state.products = await loadProducts();
 
-    fillSelect(categoryFilter, state.products, "category", "Все категории");
-    fillSelect(scaleFilter, state.products, "scale", "Все масштабы");
-    fillSelect(manufacturerFilter, state.products, "manufacturer", "Все производители");
-
+    fillFilters();
     refreshCatalog();
 
+}
+
+function fillFilters() {
+    fillSelect(categoryFilter, state.products, "category", i18n.t("allCategories"));
+    fillSelect(scaleFilter, state.products, "scale", i18n.t("allScales"));
+    fillSelect(manufacturerFilter, state.products, "manufacturer", i18n.t("allManufacturers"));
 }
 
 searchInput.addEventListener("input", e => {
@@ -58,6 +61,13 @@ manufacturerFilter.addEventListener("change", e => {
 
     refreshCatalog();
 
+});
+
+languageSelect.addEventListener("change", e => {
+    i18n.setLang(e.target.value);
+    translatePage();
+    fillFilters();
+    refreshCatalog();
 });
 
 function refreshCatalog() {
