@@ -107,6 +107,7 @@ let isModalOpen = false;
 function closeProductModal() {
   modal.classList.add("hidden");
   isModalOpen = false;
+  document.body.classList.remove("modal-open");
   window.history.replaceState({}, "", window.location.href);
 }
 
@@ -161,6 +162,7 @@ function openProductModal(product) {
 
   modal.classList.remove("hidden");
   isModalOpen = true;
+  document.body.classList.add("modal-open");
   window.history.pushState({ modalOpen: true }, "", window.location.href);
 }
 

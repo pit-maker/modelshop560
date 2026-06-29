@@ -13,33 +13,37 @@
 <body>
 
   <header class="header">
-    <div class="title" data-i18n-key="headerTitle">Каталог продукции PIT</div>
+    <div class="header-top">
+      <div class="title" data-i18n-key="headerTitle">Каталог продукции PIT</div>
 
-    <div class="toolbar">
-      <label for="languageSelect" class="language-label" data-i18n-key="languageLabel">Язык</label>
-      <select id="languageSelect">
-        <option value="ru">RU</option>
-        <option value="en">EN</option>
-        <option value="uk">UK</option>
-      </select>
+      <div class="toolbar">
+        <label for="languageSelect" class="language-label" data-i18n-key="languageLabel">Язык</label>
+        <select id="languageSelect">
+          <option value="ru">RU</option>
+          <option value="en">EN</option>
+          <option value="uk">UK</option>
+        </select>
+      </div>
     </div>
 
     <input id="searchInput" type="text" data-i18n-key="searchPlaceholder" data-i18n-attr="placeholder" placeholder="Поиск по названию или артикулу">
 
-    <div class="filters">
+    <div class="filters-wrapper">
+      <button id="filtersToggle" class="filters-toggle" type="button" data-i18n-key="filterToggle">Фильтр</button>
 
-      <select id="categoryFilter">
-        <option value="">Все категории</option>
-      </select>
+      <div class="filters" id="filtersPanel">
+        <select id="categoryFilter">
+          <option value="">Все категории</option>
+        </select>
 
-      <select id="scaleFilter">
-        <option value="">Все масштабы</option>
-      </select>
+        <select id="scaleFilter">
+          <option value="">Все масштабы</option>
+        </select>
 
-      <select id="manufacturerFilter">
-        <option value="">Все производители</option>
-      </select>
-
+        <select id="manufacturerFilter">
+          <option value="">Все производители</option>
+        </select>
+      </div>
     </div>
 
   </header>

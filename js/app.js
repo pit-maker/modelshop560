@@ -12,6 +12,8 @@ const categoryFilter = document.getElementById("categoryFilter");
 const scaleFilter = document.getElementById("scaleFilter");
 const manufacturerFilter = document.getElementById("manufacturerFilter");
 const languageSelect = document.getElementById("languageSelect");
+const filtersToggle = document.getElementById("filtersToggle");
+const filtersPanel = document.getElementById("filtersPanel");
 
 async function init() {
 
@@ -68,6 +70,13 @@ languageSelect.addEventListener("change", e => {
     translatePage();
     fillFilters();
     refreshCatalog();
+});
+
+filtersToggle.setAttribute("aria-expanded", "false");
+
+filtersToggle.addEventListener("click", () => {
+    const isOpen = filtersPanel.classList.toggle("is-open");
+    filtersToggle.setAttribute("aria-expanded", String(isOpen));
 });
 
 function refreshCatalog() {

@@ -16,7 +16,8 @@ const translations = {
     loading: "Загрузка...",
     productImageAlt: "изображение товара",
     languageLabel: "Язык",
-    modalSpecsTitle: "Характеристики"
+    modalSpecsTitle: "Характеристики",
+    filterToggle: "Фильтр"
   },
   en: {
     pageTitle: "PIT Product Catalog",
@@ -35,7 +36,8 @@ const translations = {
     loading: "Loading...",
     productImageAlt: "product image",
     languageLabel: "Language",
-    modalSpecsTitle: "Specifications"
+    modalSpecsTitle: "Specifications",
+    filterToggle: "Filter"
   },
   uk: {
     pageTitle: "Каталог продукції PIT",
@@ -54,7 +56,8 @@ const translations = {
     loading: "Завантаження...",
     productImageAlt: "зображення товару",
     languageLabel: "Мова",
-    modalSpecsTitle: "Характеристики"
+    modalSpecsTitle: "Характеристики",
+    filterToggle: "Фільтр"
   }
 };
 

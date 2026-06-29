@@ -2,31 +2,51 @@ body {
   margin: 0;
   font-family: Arial, sans-serif;
   background: #f4f6f8;
+  overflow-x: hidden;
+}
+
+body.modal-open {
+  overflow: hidden;
 }
 
 .header {
   background: #1f2a37;
   color: white;
-  padding: 16px 20px;
+  padding: 16px 20px 18px;
   font-size: 20px;
+  position: relative;
+}
+
+.header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 12px;
 }
 
 .toolbar {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 12px;
+  gap: 8px;
+  padding: 6px 10px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  margin-left: auto;
 }
 
 .language-label {
-  font-size: 14px;
-  opacity: 0.8;
+  font-size: 12px;
+  opacity: 0.85;
+  white-space: nowrap;
 }
 
 #languageSelect {
-  padding: 8px 12px;
-  border-radius: 6px;
-  font-size: 15px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  min-height: 26px;
+  border: none;
 }
 
 #app {
@@ -117,17 +137,38 @@ body {
   margin: 0 0 8px;
 }
 
+.filters-wrapper {
+  margin-top: 12px;
+}
+
+.filters-toggle {
+  border: none;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  background: #ffffff;
+  color: #1f2a37;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
 .filters {
-    display: flex;
+    display: none;
     gap: 10px;
-    margin-top: 12px;
+    margin-top: 10px;
     flex-wrap: wrap;
+}
+
+.filters.is-open {
+    display: flex;
 }
 
 .filters select {
     padding: 8px 12px;
     font-size: 15px;
     border-radius: 6px;
+    min-width: 180px;
 }
 
 .stock{
@@ -163,6 +204,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 16px;
+  overflow-y: auto;
 }
 
 .modal-overlay {
@@ -173,14 +216,14 @@ body {
 
 .modal-content {
   position: relative;
-  width: 90vw;
-  max-width: 1100px;
-  height: 90vh;
+  width: min(90vw, 1100px);
+  max-height: min(90vh, 900px);
   min-height: 500px;
   margin: auto;
   background: #fff;
   border-radius: 12px;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
   z-index: 2;
 }
 
@@ -266,13 +309,18 @@ body {
     padding: 16px;
   }
 
+  .header-top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
   .toolbar {
-    flex-wrap: wrap;
-    justify-content: space-between;
+    margin-left: 0;
+    align-self: flex-end;
   }
 
   #searchInput,
-  .filters {
+  .filters-wrapper {
     width: 100%;
   }
 
@@ -280,15 +328,19 @@ body {
     margin-top: 12px;
   }
 
+  .filters-toggle {
+    width: 100%;
+  }
+
   .filters {
-    display: flex;
     flex-direction: column;
     gap: 10px;
-    margin-top: 16px;
+    margin-top: 12px;
   }
 
   .filters select {
     width: 100%;
+    min-width: 0;
   }
 
   .modal-content {
@@ -317,14 +369,16 @@ body {
 
   .toolbar {
     gap: 8px;
+    width: 100%;
+    justify-content: flex-end;
   }
 
   .language-label {
-    width: 100%;
+    width: auto;
   }
 
   #languageSelect {
-    width: 100%;
+    width: auto;
   }
 
   .card {
