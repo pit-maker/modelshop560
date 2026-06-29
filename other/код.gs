@@ -10,6 +10,7 @@ function doGet(e) {
   return ContentService
     .createTextOutput(content)
     .setMimeType(ContentService.MimeType.JSON);
+    //.setHeader("Access-Control-Allow-Origin", "*");
 }
 
 function getSpreadsheetLastUpdated() {

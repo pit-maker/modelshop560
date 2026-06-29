@@ -4,6 +4,15 @@ export function applyFilters() {
 
     state.filteredProducts = state.products.filter(product => {
 
+        // Только включённые товары
+        const isEnabled = typeof product.enabled === "string"
+            ? product.enabled.toLowerCase() === "true"
+            : product.enabled === true;
+
+        if (!isEnabled) {
+            return false;
+        }
+
         // Поиск
         if (state.filters.search) {
 
