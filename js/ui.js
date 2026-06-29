@@ -102,6 +102,13 @@ function createProductCard(product) {
 
 const modal = document.getElementById("productModal");
 const modalClose = document.getElementById("modalClose");
+let isModalOpen = false;
+
+function closeProductModal() {
+  modal.classList.add("hidden");
+  isModalOpen = false;
+  window.history.replaceState({}, "", window.location.href);
+}
 
 function openProductModal(product) {
   document.getElementById("modalTitle").textContent = product.name;
@@ -153,13 +160,21 @@ function openProductModal(product) {
   }
 
   modal.classList.remove("hidden");
+  isModalOpen = true;
+  window.history.pushState({ modalOpen: true }, "", window.location.href);
 }
 
-modalClose.onclick = () => modal.classList.add("hidden");
+modalClose.onclick = () => closeProductModal();
 
 document.querySelector(".modal-overlay").onclick = () => {
-  modal.classList.add("hidden");
+  closeProductModal();
 };
+
+window.addEventListener("popstate", () => {
+  if (isModalOpen) {
+    closeProductModal();
+  }
+});
 
 // -----------------------------
 // Защита от HTML из Google Sheets
