@@ -251,7 +251,7 @@ body.modal-open {
   max-height: calc(100vh - 200px);
 }
 
-.modal-image img {
+.modal-image > img {
   width: 100%;
   max-height: calc(100vh - 280px);
   object-fit: contain;
@@ -259,19 +259,21 @@ body.modal-open {
 
 .modal-thumbs {
   display: flex;
-  gap: 8px;
+  gap: 6px;
   flex-wrap: wrap;
   margin-top: 12px;
+  align-items: center;
 }
 
 .modal-thumb {
-  width: 68px;
-  height: 68px;
+  width: 56px;
+  height: 56px;
   object-fit: cover;
   cursor: pointer;
   border-radius: 8px;
   border: 2px solid transparent;
   transition: border-color 0.2s ease;
+  flex: 0 0 auto;
 }
 
 .modal-thumb.active {

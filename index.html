@@ -7,7 +7,7 @@
 
   <title>Каталог запчастей</title>
 
-  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/main.css?v=20260629" />
 </head>
 
 <body>
@@ -26,12 +26,13 @@
       </div>
     </div>
 
-    <input id="searchInput" type="text" data-i18n-key="searchPlaceholder" data-i18n-attr="placeholder" placeholder="Поиск по названию или артикулу">
-
+    
     <div class="filters-wrapper">
       <button id="filtersToggle" class="filters-toggle" type="button" data-i18n-key="filterToggle">Фильтр</button>
 
       <div class="filters" id="filtersPanel">
+        <input id="searchInput" type="text" data-i18n-key="searchPlaceholder" data-i18n-attr="placeholder" placeholder="Поиск по названию или артикулу">
+        
         <select id="categoryFilter">
           <option value="">Все категории</option>
         </select>

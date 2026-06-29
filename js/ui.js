@@ -60,7 +60,7 @@ function createProductCard(product) {
     body.className = "card-body";
 
     body.innerHTML = `
-        <h3>${safeText(product.name)}</h3>
+        <h4>${safeText(product.name)}</h4>
 
         <div class="article">
             ${i18n.t("article")} ${safeText(product.article)}
