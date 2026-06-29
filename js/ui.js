@@ -66,21 +66,21 @@ function createProductCard(product) {
             ${i18n.t("article")} ${safeText(product.article)}
         </div>
 
-        <div class="manufacturer">
+        <!-- <div class="manufacturer">
             ${safeText(product.manufacturer)}
-        </div>
+        </div> -->
 
         <div class="scale">
             ${i18n.t("scaleLabel")} ${safeText(product.scale)}
         </div>
 
-        <div class="stock ${stockClass}">
+        <!-- <div class="stock ${stockClass}">
             ${stockText}
-        </div>
+        </div> -->
 
-        <div class="price">
+        <!-- <div class="price">
             ${safeText(product.price)} ${safeText(product.currency)}
-        </div>
+        </div> -->
     `;
 
     // -----------------------------
@@ -113,7 +113,7 @@ function closeProductModal() {
 
 function openProductModal(product) {
   document.getElementById("modalTitle").textContent = product.name;
-  document.getElementById("modalPrice").textContent = product.price + " грн";
+  document.getElementById("modalPrice").textContent = "";
   document.getElementById("modalDescription").textContent = product.description || "";
 
   const img = document.getElementById("modalImage");
@@ -152,10 +152,30 @@ function openProductModal(product) {
   const specs = document.getElementById("modalSpecs");
   specs.innerHTML = "";
 
+  const additionalInfo = [];
+
+  if (product.article) {
+    additionalInfo.push(`${i18n.t("article")} ${safeText(product.article)}`);
+  }
+
+  if (product.scale) {
+    additionalInfo.push(`${i18n.t("scaleLabel")} ${safeText(product.scale)}`);
+  }
+
+  additionalInfo.forEach(item => {
+    const li = document.createElement("li");
+    li.textContent = item;
+    specs.appendChild(li);
+  });
+
   if (product.specs) {
-    Object.entries(product.specs).forEach(([key, value]) => {
+    const specEntries = Array.isArray(product.specs)
+      ? product.specs.map(spec => [null, spec])
+      : Object.entries(product.specs);
+
+    specEntries.forEach(([key, value]) => {
       const li = document.createElement("li");
-      li.textContent = `${key}: ${value}`;
+      li.textContent = key ? `${key}: ${value}` : String(value);
       specs.appendChild(li);
     });
   }

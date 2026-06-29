@@ -41,7 +41,7 @@
           <option value="">Все масштабы</option>
         </select>
 
-        <select id="manufacturerFilter">
+        <select id="manufacturerFilter" hidden>
           <option value="">Все производители</option>
         </select>
       </div>
@@ -63,7 +63,7 @@
 
       <div class="modal-grid">
         <div class="modal-image">
-          <img id="modalImage" src="no-photo.png" alt="product image" data-i18n-key="productImageAlt" data-i18n-attr="alt">
+          <img id="modalImage" src="img/no-photo.png" alt="product image" data-i18n-key="productImageAlt" data-i18n-attr="alt">
           <div class="modal-thumbs" id="modalThumbnails"></div>
         </div>
 
@@ -76,11 +76,6 @@
 
           <h3 data-i18n-key="modalSpecsTitle">Характеристики</h3>
           <ul class="modal-specs" id="modalSpecs"></ul>
-
-          <div class="modal-actions">
-            <button id="addToCartBtn" data-i18n-key="addToCart">В корзину</button>
-            <button id="favoriteBtn" data-i18n-key="favorite">★ В избранное</button>
-          </div>
         </div>
       </div>
     </div>

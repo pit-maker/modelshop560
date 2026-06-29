@@ -62,16 +62,41 @@ const translations = {
 };
 
 const supportedLanguages = Object.keys(translations);
-const savedLang = localStorage.getItem("appLanguage");
-const defaultLang = savedLang || (() => {
-  const lang = navigator.language || navigator.userLanguage || "";
-  if (lang.startsWith("en")) return "en";
-  if (lang.startsWith("uk") || lang.startsWith("uk-")) return "uk";
+
+function normalizeLanguageCode(lang) {
+  const value = String(lang || "").toLowerCase();
+  if (value.startsWith("uk")) return "uk";
+  if (value.startsWith("ru")) return "ru";
+  if (value.startsWith("en")) return "en";
+  return null;
+}
+
+function detectLanguageFromBrowser() {
+  const preferredLanguages = [
+    ...(navigator.languages || []),
+    navigator.language,
+    navigator.userLanguage
+  ].filter(Boolean);
+
+  for (const lang of preferredLanguages) {
+    const normalized = normalizeLanguageCode(lang);
+    if (normalized) return normalized;
+  }
+
   return "ru";
-})();
+}
+
+function getInitialLanguage() {
+  const savedLang = localStorage.getItem("appLanguage");
+  if (savedLang && supportedLanguages.includes(savedLang)) {
+    return savedLang;
+  }
+
+  return detectLanguageFromBrowser();
+}
 
 export const i18n = {
-  currentLang: supportedLanguages.includes(defaultLang) ? defaultLang : "ru",
+  currentLang: getInitialLanguage(),
 
   t(key) {
     return translations[this.currentLang][key] ?? translations.ru[key] ?? key;
@@ -81,6 +106,15 @@ export const i18n = {
     if (!supportedLanguages.includes(lang)) return;
     this.currentLang = lang;
     localStorage.setItem("appLanguage", lang);
+  },
+
+  detectLanguage() {
+    const detectedLang = getInitialLanguage();
+    if (detectedLang !== this.currentLang) {
+      this.currentLang = detectedLang;
+      localStorage.setItem("appLanguage", detectedLang);
+    }
+    return detectedLang;
   }
 };
 

@@ -15,16 +15,19 @@ const languageSelect = document.getElementById("languageSelect");
 const filtersToggle = document.getElementById("filtersToggle");
 const filtersPanel = document.getElementById("filtersPanel");
 
-async function init() {
-
-    translatePage();
+async function loadCatalog() {
     app.innerHTML = `<p>${i18n.t("loading")}</p>`;
 
     state.products = await loadProducts();
 
     fillFilters();
     refreshCatalog();
+}
 
+async function init() {
+    i18n.detectLanguage();
+    translatePage();
+    await loadCatalog();
 }
 
 function fillFilters() {
@@ -65,11 +68,10 @@ manufacturerFilter.addEventListener("change", e => {
 
 });
 
-languageSelect.addEventListener("change", e => {
+languageSelect.addEventListener("change", async e => {
     i18n.setLang(e.target.value);
     translatePage();
-    fillFilters();
-    refreshCatalog();
+    await loadCatalog();
 });
 
 filtersToggle.setAttribute("aria-expanded", "false");
